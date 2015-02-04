@@ -194,7 +194,7 @@ public class CastMonkey {
         MediaMetadata mediaMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
         mediaMetadata.putString(MediaMetadata.KEY_TITLE, "Mickey Mouse Fire House");
         MediaInfo mediaInfo = new MediaInfo.Builder(
-                "http://bit-101.com/mickey.mp4")
+                "https://github.com/dreamsocket/dreamsocket-poc_chromecast_sender_android/raw/master/media/mickey.mp4")
                 .setContentType("video/mp4")
                 .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
                 .setMetadata(mediaMetadata)
