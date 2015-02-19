@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.gms.cast.Cast;
 import com.google.android.gms.cast.CastDevice;
-import com.google.android.gms.cast.CastMediaControlIntent;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 import com.google.android.gms.cast.MediaStatus;
@@ -30,6 +29,11 @@ import java.io.IOException;
  */
 public class CastMonkey {
     protected final String TAG = "CastMonkey";
+//    protected final String RECEIVER_ID = "ABF33862";
+    protected final String RECEIVER_ID = CastMediaControlIntent.DEFAULT_MEDIA_RECEIVER_APPLICATION_ID;
+//    protected final String MEDIA_URL = "https://github.com/dreamsocket/dreamsocket-poc_chromecast_sender_android/raw/master/media/mickey.mp4";
+//    protected final String MEDIA_URL = "http://trailers.apple.com/movies/sony_pictures/afterearth/afterearth-tlr1_h640w.mov";
+    protected final String MEDIA_URL = "http://movietrailers.apple.com/movies/universal/minions/minions-tlr2_i320.m4v";
 
     protected Context m_context;
     protected MediaRouter m_mediaRouter;
@@ -114,7 +118,7 @@ public class CastMonkey {
     }
 
     public void launchReceiverApp() {
-        Cast.CastApi.launchApplication(this.m_googleApiClient, CastMediaControlIntent.DEFAULT_MEDIA_RECEIVER_APPLICATION_ID, false)
+        Cast.CastApi.launchApplication(this.m_googleApiClient, RECEIVER_ID, false)
                 .setResultCallback(
                         new ResultCallback<Cast.ApplicationConnectionResult>() {
                             @Override
@@ -192,9 +196,9 @@ public class CastMonkey {
 
     protected void loadMedia() {
         MediaMetadata mediaMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
-        mediaMetadata.putString(MediaMetadata.KEY_TITLE, "Mickey Mouse Fire House");
+        mediaMetadata.putString(MediaMetadata.KEY_TITLE, "Minions Movie");
         MediaInfo mediaInfo = new MediaInfo.Builder(
-                "https://github.com/dreamsocket/dreamsocket-poc_chromecast_sender_android/raw/master/media/mickey.mp4")
+                MEDIA_URL)
                 .setContentType("video/mp4")
                 .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
                 .setMetadata(mediaMetadata)
